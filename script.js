@@ -49,6 +49,8 @@ function cutSalary(salary) {
     // zero salary 
     if (salary == '0') return "Invalid"
 
+    if (salary <= 2000) return salary
+
     if (salary >= 2000 && salary <= 5000) return salary - (salary*percentFirst)
 
     if (salary > 5000) return salary - (salary*percentSecond)
