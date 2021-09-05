@@ -32,4 +32,35 @@ function showUserInfo(name, age, salary){
     console.log(userLog)
 }
 
-getUserInput()
+
+
+// cut the salary based on some percentage
+function cutSalary(salary) {
+
+    // 5% cut off
+    const percentFirst = 0.05 
+
+    // 10%
+    const percentSecond = 0.1
+
+    // invalid salary 
+    if (!salary) return "Invalid"
+
+    // zero salary 
+    if (salary == '0') return "Invalid"
+
+    if (salary >= 2000 && salary <= 5000) return salary - (salary*percentFirst)
+
+    if (salary > 5000) return salary - (salary*percentSecond)
+
+} 
+
+function modifiySalary(){
+    rl.question("What if your salary ? ", sal => {
+        console.log(`Your new salary is : ${cutSalary(sal)}`)
+
+        rl.close()
+    })
+}
+
+modifiySalary()
