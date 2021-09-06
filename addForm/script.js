@@ -1,5 +1,20 @@
 // getting elements
 const form = document.getElementById('customer-form')
+const lsName = "customers"
+
+function updateLocalStorage(item) {
+
+    // getting the local storage
+    const items = JSON.parse(localStorage.getItem(lsName)) || []
+    
+    items.push(item)
+
+    // adding to the local storage
+    localStorage.setItem(lsName, JSON.stringify(items))
+
+}
+
+
 
 form.addEventListener('submit',  e => {
     // preventing the default 
@@ -18,6 +33,9 @@ form.addEventListener('submit',  e => {
     }
 
     console.log(data)
+    
+    // updating the ls
+    updateLocalStorage(data)
 
     form.reset()
 })
