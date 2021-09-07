@@ -14,6 +14,18 @@ function exportToFile(fileName, data) {
 
 }
 
+
+function appendToFile(fileName, data) {
+
+    // reading the file
+    const allData = getDataFromFile(fileName)
+
+    allData.push(data)
+
+    // write back
+    exportToFile(fileName, allData)
+}
+
 function getDataFromFile(fileName){
 
     // reading from file
@@ -29,5 +41,6 @@ function getDataFromFile(fileName){
 
 module.exports = {
     saveToFile: exportToFile,
-    getData: getDataFromFile
+    getData: getDataFromFile,
+    addToFile: appendToFile
 }

@@ -1,11 +1,20 @@
 const fileReaders = require('./moduleX')
 
 
-const data = fileReaders.getData('test.json')
+
+
+const data = [
+    {name: "Something", age:23},
+    {name: "Something", age:23},
+    {name: "Something", age:23},
+    {name: "Something", age:23}
+] 
 
 
 data.forEach(item => {
-    console.log(item)
+    // writing to a file
+
+    fileReaders.addToFile('test.json', item)
 })
 
 
