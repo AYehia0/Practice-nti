@@ -14,7 +14,20 @@ function exportToFile(fileName, data) {
 
 }
 
+function getDataFromFile(fileName){
+
+    // reading from file
+    // encoding utf-8 , just in case
+    const data = fs.readFileSync(fileName, {encoding:'utf8'})
+
+    // decoding/parsing
+    const dataObj = JSON.parse(data)
+
+    // loop through or do whatever
+    return dataObj
+}
 
 module.exports = {
-    saveToFile: exportToFile
+    saveToFile: exportToFile,
+    getData: getDataFromFile
 }
