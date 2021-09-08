@@ -14,6 +14,21 @@ const studentData = {
     subjects: []
 }
 
+function getLastId(){
+
+    // the whole data
+    const fileData = getData(fileName)
+
+    // last student
+    // i hope there is a better way to do this [-1]
+    // we don't need to parseInt
+
+    if (fileData.length == 0)
+        return 0
+    
+    return fileData[fileData.length-1].id
+
+}
 
 // adding a student to the file
 function addStudent(data) {
@@ -22,19 +37,16 @@ function addStudent(data) {
     // returns [] if empty
     const fileData = getData(fileName)
 
-    // getting the length of the object
-    const numOfStudents = fileData.length
 
     // checking if classId is vaild
     if (availableClasses.includes(data.classId)) return "Invalid classNo"
 
     // adding id to the student 
-    data.id = numOfStudents + 1
+    data.id = getLastId() + 1
 
     // start counting from 0
     addToFile(fileName, data)
 }
-
 
 // id is unique
 // returns the location of the student
