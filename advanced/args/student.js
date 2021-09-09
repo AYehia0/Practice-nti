@@ -52,13 +52,20 @@ function addStudent(data) {
 // returns the location of the student
 function getStudentLocation(id) {
 
+    let index = 0
+
     // reading data 
     const fileData = fileHandler.getData(fileName)
 
     // i will use forEach again
     fileData.forEach( (item, ind) => {
-        if (item.id == id) return ind 
+        if (item.id == id){
+            index = ind
+            return 
+        }     
     })
+
+    return index
 
 }
 // adding subjects to student using their ids
@@ -70,17 +77,60 @@ function addSubjectsToStudent(id, subjects) {
     const students = fileHandler.getData(fileName)
 
     // getting the student first
-    const studentInd = getStudentById(id)
+    const studentInd = getStudentLocation(id)
 
     // appending to the subjects
     students[studentInd].subjects.push(subjects)
 
+    // save back
+    fileHandler.saveToFile(fileName, students)
+
 }
 
+// gets first X student 
+function showStudents(limit) {
+
+    const students = fileHandler.getData(fileName)
+
+    if (students.length <= limit) return students
+
+    return students.slice(students.length-limit)
+
+}
+
+function getTotalGrades() {
+
+
+    let sum = 0
+    const students = fileHandler.getData(fileName)
+
+    
+    students.forEach(student => {
+        student.subjects.forEach(sub => {
+            sum += sub.grade
+        })
+    })
+
+    return sum
+
+   // return students.reduce((count, {subjects}) => {
+
+   //     console.log(subjects)
+
+   //     count + subjects.grade
+
+   //     console.log(subjects.grade)
+
+   // }, 0)
+
+}
 
 module.exports = {
     addStudent,
-    addSubjectsToStudent
+    addSubjectsToStudent,
+    getStudentLocation,
+    showStudents,
+    getTotalGrades
 }
 
 // In order
