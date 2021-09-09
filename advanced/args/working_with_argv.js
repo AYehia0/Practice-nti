@@ -66,7 +66,8 @@ yargs.command({
     
         limit: {
             type: Number,
-            demandOption: false
+            demandOption: false,
+            default: 1
         }
 
     },
