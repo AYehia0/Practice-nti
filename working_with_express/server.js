@@ -13,11 +13,29 @@ const app = express()
 app.use('/static', express.static(path.join(__dirname, "public")))
 app.set('view engine', 'hbs')
 app.set('views', './views');
-hbs.registerPartials(path.join(__dirname, "views/layouts"))
+hbs.registerPartials(path.join(__dirname, "/views/layouts"))
 
+// routes
 app.get('/', (req, res, err) => {
     // rendering the home page from views
-    res.render('home')
+    res.render('home', {
+        title: "HomePage"
+    })
+})
+
+app.get('/single-post', (req, res) => {
+
+    res.render("single", {
+        title: "SinglePost"
+    })
+})
+
+app.get('/posts', (req, res) => {
+
+    res.render('posts', {
+        title: "AllPosts"
+    })
+
 })
 
 // another method is to use "*"
