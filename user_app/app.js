@@ -27,6 +27,9 @@ app.use(bodyParser.json())
 // using the routes
 app.use(mainRoute)
 app.use('/add', addUser)
+app.use('/edit', editUser)
+app.use('/show-single', showSingle)
+app.use('/show-all', showAll)
 
 //not a vaild url/route
 app.use((req, res, next)=>{
