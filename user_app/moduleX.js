@@ -14,6 +14,18 @@ function exportToFile(fileName, data) {
 
 }
 
+// returns a user by their ids
+function getUserById(fileName, id) {
+
+    const allData = getDataFromFile(fileName)
+
+    const user = allData.find(el => {
+        return el.id == id
+    })
+
+    return user
+
+}
 
 function appendToFile(fileName, data) {
 
@@ -42,5 +54,6 @@ function getDataFromFile(fileName){
 module.exports = {
     saveToFile: exportToFile,
     getData: getDataFromFile,
-    addToFile: appendToFile
+    addToFile: appendToFile,
+    getUserById
 }
