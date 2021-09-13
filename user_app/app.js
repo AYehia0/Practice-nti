@@ -28,7 +28,7 @@ app.use(bodyParser.json())
 app.use(mainRoute)
 app.use('/add', addUser)
 app.use('/edit', editUser)
-app.use('/show-single', showSingle)
+app.use('/show-single/:id', showSingle)
 app.use('/show-all', showAll)
 
 //not a vaild url/route
