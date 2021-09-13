@@ -14,6 +14,28 @@ function exportToFile(fileName, data) {
 
 }
 
+function findUserIndex(users, id) {
+
+    const ind = users.findIndex(user => user.id == id)
+
+    return ind
+}
+
+function deleteUser(fileName, id) {
+
+    const allData = getDataFromFile(fileName)
+
+    // getting the index 
+    const ind = findUserIndex(allData, id)
+
+    // deleting
+    allData.splice(ind, 1)
+
+    // saving
+    exportToFile(fileName, allData)
+
+}
+
 // returns a user by their ids
 function getUserById(fileName, id) {
 
@@ -55,5 +77,7 @@ module.exports = {
     saveToFile: exportToFile,
     getData: getDataFromFile,
     addToFile: appendToFile,
-    getUserById
+    getUserById,
+    deleteUser,
+    findUserIndex
 }
