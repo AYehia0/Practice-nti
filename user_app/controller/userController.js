@@ -6,10 +6,15 @@
 // showSingle
 // showAll
 
-const testCon = (req, res) => {
-    res.send("Controller")
+const fileHandler = require('../moduleX')
+const fileName = "models/users.json"
+
+// deleting a user
+// edit the user
+const editCon = (req, res, err) => {
+
 }
 
 module.exports = {
-    testCon 
+    editCon 
 }

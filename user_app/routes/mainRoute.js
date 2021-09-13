@@ -6,8 +6,6 @@ const router = express.Router()
 // testing the controller 
 const con = require('../controller/userController')
 
-router.get('/something', con.testCon)
-
 router.get('/', (req, res, err) => {
     res.send('Main Page')
 })

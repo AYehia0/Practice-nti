@@ -9,6 +9,7 @@ const addUser = require('./routes/addRoute')
 const editUser = require('./routes/editRoute')
 const showSingle = require('./routes/showSingleRoute')
 const showAll = require('./routes/showAllRoute')
+const deleteUser = require('./routes/deleteRoute')
 
 
 const app = express()
@@ -27,9 +28,13 @@ app.use(bodyParser.json())
 // using the routes
 app.use(mainRoute)
 app.use('/add', addUser)
-app.use('/edit', editUser)
 app.use('/show-single/:id', showSingle)
 app.use('/show-all', showAll)
+
+// CRUD
+app.use('/delete/:id', deleteUser)
+app.use('/edit', editUser)
+
 
 //not a vaild url/route
 app.use((req, res, next)=>{
