@@ -5,6 +5,10 @@ const bodyParser = require("body-parser");
 
 // imporing the routes
 const mainRoute = require('./routes/mainRoute')
+const addUser = require('./routes/addRoute')
+const editUser = require('./routes/editRoute')
+const showSingle = require('./routes/showSingleRoute')
+const showAll = require('./routes/showAllRoute')
 
 
 const app = express()
@@ -22,6 +26,7 @@ app.use(bodyParser.json())
 
 // using the routes
 app.use(mainRoute)
+app.use('/add', addUser)
 
 //not a vaild url/route
 app.use((req, res, next)=>{
