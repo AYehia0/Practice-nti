@@ -11,8 +11,13 @@ router.get('/', (req, res, err) => {
 router.post('/', (req, res, err) => {
     const userData = req.body
 
+    // adding id to the user
+    const modUser = {
+        id: Date.now(),
+        ...userData
+    }
     // doing processes on the data, whatever
-    fileHandler.addToFile(fileName, userData)
+    fileHandler.addToFile(fileName, modUser)
     res.redirect('/')
 })
 
