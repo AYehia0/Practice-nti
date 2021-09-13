@@ -81,6 +81,7 @@ yargs.command({
 }
 )
 
+
 // idk what is the point of getting the total grades, but meh
 yargs.command({
     command: "get_grades",
@@ -90,6 +91,28 @@ yargs.command({
         // show students
         // use JSON.stringify to show all the data
         console.log(studentMod.getTotalGrades())
+    }
+}
+)
+
+yargs.command({
+    command: "get_student_by_id",
+    describe:"Shows Students' info",
+    builder: {
+    
+        id: {
+            type: Number,
+            demandOption: false,
+            default: 1
+        }
+
+    },
+    handler: () => {
+        const id = yargs.argv.id
+
+        // show students
+        // use JSON.stringify to show all the data
+        console.log(JSON.stringify(studentMod.getStudentById(id))) 
     }
 }
 )

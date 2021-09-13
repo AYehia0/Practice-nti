@@ -125,12 +125,30 @@ function getTotalGrades() {
 
 }
 
+// return the student by id
+function getStudentById (id){
+
+    let choosenStudent = undefined
+    const students = fileHandler.getData(fileName)
+
+    student.forEach(s => {
+        if (s.id == id) {
+            choosenStudent = s
+            return
+        }
+    })
+
+    return choosenStudent
+
+} 
+
 module.exports = {
     addStudent,
     addSubjectsToStudent,
     getStudentLocation,
     showStudents,
-    getTotalGrades
+    getTotalGrades,
+    getStudentById
 }
 
 // In order

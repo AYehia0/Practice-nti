@@ -1,8 +1,6 @@
 const fileReaders = require('./moduleX')
 
 
-
-
 const data = [
     {name: "Something", age:23},
     {name: "Something", age:23},

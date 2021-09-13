@@ -1,1 +1,1 @@
-[{"name":"Ahmed","classId":"a","id":1}]
+[{"name":"Ahmed","classId":"a","subjects":[{"name":"Math","grade":50},{"name":"Math","grade":50},{"name":"Math","grade":50},{"name":"Math","grade":50},{"name":"Math","grade":50}],"id":1},{"name":"Ahmed","classId":"a","subjects":[{"name":"Math","grade":50}],"id":2},{"name":"Ahmed","classId":"a","subjects":[],"id":3},{"name":"Ahmed","classId":"a","subjects":[],"id":4},{"name":"Ahmed","classId":"a","subjects":[],"id":5}]

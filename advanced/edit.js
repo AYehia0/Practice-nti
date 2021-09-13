@@ -1,5 +1,3 @@
-
-
 // object is sent
 // note it only works with the title,,, very specific function
 function validateTitle(task, allTasks){
