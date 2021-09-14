@@ -75,8 +75,23 @@ function getDataFromFile(fileName){
     return dataObj
 }
 
+function toggleStatus(fileName, id){
+    
+    const allData = getDataFromFile(fileName)
+
+    const ind = findUserIndex(allData, id) 
+
+    // there is a better way to do this, idk 
+
+    allData[ind].status = true
+
+    // saving 
+    exportToFile(fileName, allData)
+
+}
+
 // editing a user 
-function editUserById (fileName, id, data) {
+function editUserByAccountNum (fileName, id, data) {
     
     const allData = getDataFromFile(fileName)
 
@@ -85,11 +100,43 @@ function editUserById (fileName, id, data) {
     // there is a better way to do this, idk 
 
     allData[ind].name = data.name
+    allData[ind].balance = data.balance
 
     // saving 
     exportToFile(fileName, allData)
 
 }
+
+function updateMoneyAmount(fileName, id, money, op) {
+
+    const allData = getDataFromFile(fileName)
+
+    const ind = findUserIndex(allData, id) 
+
+    console.log(ind, allData[ind])
+
+    if (op == "+") {
+        allData[ind].balance += (+money.money)
+    }
+
+    if (op == "-"){
+        // checking the current balance
+        // need to check if number is negative 
+        // more error checking here
+
+        // converting strings to numbers using + 
+       if (+money.money <= +money.balance){
+            allData[ind].balance -= (+money.money)
+        }
+
+        // if process failed 
+    }
+
+    // saving 
+    exportToFile(fileName, allData)
+
+}
+
 
 module.exports = {
     saveToFile: exportToFile,
@@ -98,5 +145,7 @@ module.exports = {
     getUserById,
     deleteUser,
     findUserIndex,
-    editUserById
+    editUserByAccountNum,
+    toggleStatus,
+    updateMoneyAmount
 }

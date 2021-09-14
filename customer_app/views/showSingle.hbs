@@ -1,22 +1,56 @@
 {{> header }}
+<br>
 {{> nav }}
+<br>
 
 <h1>Show single</h1>
+<br>
 
-    {{user.name}}
-    <br>
-    {{user.email}}
-    <br>
-    {{user.age}}
-    <br>
-    {{user.address}}
-    <br>
+{{customer.name}}
+<br>
+{{customer.account_num}}
+<br>
 
-    <h5>Modifiy user</h5>
+{{#unless customer.status }}
+    <form action="/activate" method="POST" >
+        <input type="hidden" name="account_num" value="{{customer.account_num}}">
 
-    <a href="/delete/{{user.id}}">Delete User</a>
-    <a href="/edit/{{user.id}}">Edit User</a>
+        <input type="submit" value="status">
+    </form>
+{{/unless}}
 
+<br>
+<h2>Balance : {{customer.balance}}</h2>
+
+<br>
+<h2>Add Money</h2>
+
+<form action="/modify-balance" method="POST" >
+    <input type="hidden" name="account_num" value="{{customer.account_num}}">
+    <input type="number" name="money" placeholder="">
+
+    <input type="submit">
+</form>
+
+<br>
+
+<h2>Withdraw Money</h2>
+
+<form action="/withdraw" method="POST" >
+    <input type="hidden" name="account_num" value="{{customer.account_num}}">
+    <input type="hidden" name="balance" value="{{customer.balance}}">
+    <input type="number" name="money" placeholder="Current balance: {{customer.balance}}">
+
+    <input type="submit">
+</form>
+
+
+
+<h2>Modifiy user</h2>
+
+<a href="/edit/{{customer.account_num}}">Edit User</a>
+
+<br>
 {{> footer }}
 
 

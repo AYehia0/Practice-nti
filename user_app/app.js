@@ -33,7 +33,7 @@ app.use('/show-all', showAll)
 
 // CRUD
 app.use('/delete/:id', deleteUser)
-app.use('/edit', editUser)
+app.use('/edit/:id', editUser)
 
 
 //not a vaild url/route

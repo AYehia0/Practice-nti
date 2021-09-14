@@ -73,11 +73,31 @@ function getDataFromFile(fileName){
     return dataObj
 }
 
+// editing a user 
+function editUserById (fileName, id, data) {
+    
+    const allData = getDataFromFile(fileName)
+
+    const ind = findUserIndex(allData, id) 
+
+    // there is a better way to do this, idk 
+
+    allData[ind].name = data.name
+    allData[ind].age = data.age
+    allData[ind].email = data.email
+    allData[ind].address = data.address
+
+    // saving 
+    exportToFile(fileName, allData)
+
+}
+
 module.exports = {
     saveToFile: exportToFile,
     getData: getDataFromFile,
     addToFile: appendToFile,
     getUserById,
     deleteUser,
-    findUserIndex
+    findUserIndex,
+    editUserById
 }

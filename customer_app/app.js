@@ -1,16 +1,10 @@
 const express = require('express')
 const path = require('path')
 const hbs = require('hbs')
-const bodyParser = require("body-parser");
 
 // imporing the routes
-const mainRoute = require('./routes/mainRoute')
-const addUser = require('./routes/addRoute')
-const editUser = require('./routes/editRoute')
-const showSingle = require('./routes/showSingleRoute')
-const showAll = require('./routes/showAllRoute')
-const searchUser = require('./routes/searchRoute')
-
+// from the routeAll 
+const userRoutes = require('./routes/userRoutes')
 
 const app = express()
 
@@ -18,23 +12,15 @@ const app = express()
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'hbs')
 hbs.registerPartials(path.join(__dirname, 'layouts'))
-//hbs.registerPartials(path.join(__dirname, "/views/layouts"))
 
 
-// body parser
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+// body parser isn't used anymore :D
+app.use(express.urlencoded({extended: true})); 
+app.use(express.json())
 
 // using the routes
-app.use(mainRoute)
-app.use('/add', addUser)
-app.use('/search', searchUser)
-app.use('/show-single/:id', showSingle)
-app.use('/show-all', showAll)
-
-// CRUD
-app.use('/edit/:id', editUser)
-
+// all 
+app.use(userRoutes)
 
 //not a vaild url/route
 app.use((req, res, next)=>{
