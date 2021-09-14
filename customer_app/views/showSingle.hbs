@@ -1,0 +1,22 @@
+{{> header }}
+{{> nav }}
+
+<h1>Show single</h1>
+
+    {{user.name}}
+    <br>
+    {{user.email}}
+    <br>
+    {{user.age}}
+    <br>
+    {{user.address}}
+    <br>
+
+    <h5>Modifiy user</h5>
+
+    <a href="/delete/{{user.id}}">Delete User</a>
+    <a href="/edit/{{user.id}}">Edit User</a>
+
+{{> footer }}
+
+
