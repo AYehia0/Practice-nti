@@ -5,7 +5,7 @@ const dbNAME = "Test"
 const dbURL = `mongodb://localhost:27017/${dbNAME}`
 
 mongoose.connect(dbURL, {
-    useCreateIndex: true,
+    useNewUrlParser: true, 
     useUnifiedTopology: true
 }).catch(e => {
     console.log(e.message)
