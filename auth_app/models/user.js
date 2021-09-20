@@ -118,6 +118,13 @@ const userSchema = new Schema({
 //     delete user.__v
 // }
 
+// getting all posts related to a user
+userSchema.virtual('getPosts', {
+    ref:'Post',
+    localField:"_id",
+    foreignField:"userId"
+})
+
 // saving the password ecrypted on save
 userSchema.pre('save', async function() {
     const user = this
