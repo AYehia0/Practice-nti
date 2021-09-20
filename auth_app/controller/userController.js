@@ -70,6 +70,49 @@ const loginUser = async(req,res)=>{
 const userProfile = async (req, res) => {
     res.send(req.user)
 }
+
+// log out from one device
+const logoutOne = async (req, res) => {
+    // remove the last token
+    try{
+
+        req.user.tokens.filter(t => {
+            return t.token != req.token
+        })
+
+        await req.user.save()
+        res.send({apiStatus:true, data:"", message:"logged out from this device"})
+
+    }catch(e) {
+        res.status(500).send({ 
+            apiStatus:false, 
+            data:e.message, 
+            message: 'error'
+        })
+    }
+}
+
+// log out from one device
+const logoutAll = async (req, res) => {
+    // remove the last token
+    try{
+        req.user.tokens = []
+
+        
+        await req.user.save()
+        res.send({apiStatus:true, data:"", message:"logged out from all devices"})
+
+    }catch(e) {
+        res.status(500).send({ 
+            apiStatus:false, 
+            data:e.message, 
+            message: 'error'
+        })
+    }
+}
+
+
+
 // - logout
 // - profile
 // - edit profile
