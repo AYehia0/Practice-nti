@@ -1,6 +1,5 @@
 // instead of duplicating the code in the routes
 // it's a good idea to create the callbacks here
-
 // edit
 // add
 // showSingle
@@ -8,10 +7,8 @@
 require('dotenv').config()
 const express = require('express')
 const router = express.Router({ mergeParams: true })
-const fileHandler = require('../moduleX')
-
-const fileName = process.env.fileName
-
+const conn = require('../models/dbModel')
+const ObjectId = require('mongodb').ObjectId
 
 const mainRouteGet = (req, res, err) => {
     res.send('Main Page')
@@ -33,14 +30,47 @@ const activateRoutePost = (req, res, err) => {
 const addRoutePost = (req, res, err) => {
     // activate user no validation: BAD things will happen here
     
-    const id = req.body.account_num
+    const userData = req.body
 
-    // toggling the user's status 
-    fileHandler.toggleStatus(fileName, id)
+    // adding to db
+    conn((err, db) => {
 
-    // returning to the same page
-    res.redirect('back')
+        if (err) res.send(err)
+
+        db.collection('User').insertOne(userData, (error, result) => {
+            if (error) res.send(error)
+
+            // return 
+            res.redirect('/show-all')
+        })
+
+    })
+
 }
+
+// showall route
+const showAllRouteGet = (req, res, err) => {
+
+
+    // getting users from db
+    conn((err, db) => {
+        if (err) res.send(err)
+
+        // getting all the users
+        db.collection('User').find().toArray( (error, result) => {
+
+            if (error) res.send(error)
+
+            console.log(result)
+            res.render('showAll', {
+                customers: result 
+            })
+
+        })    
+    })
+
+}
+
 
 const addRouteGet = (req, res, err) => {
     res.render('add')
@@ -66,23 +96,43 @@ const balanceAddRoutePost = (req, res, err) => {
 // edit 
 const editRouteGet = (req, res, err) => {
 
-    const id = req.params.id
+    const userId = req.params.id
 
-    // getting the user to be edited 
-    const user = fileHandler.getUserById(fileName, id, "account_num")
+    // searching for a user in the db
+    conn((err, db) => {
+        if (err) res.send(err)
 
-    res.render('edit', {
-        user: user
+        db.collection('User').findOne({_id: new ObjectId(userId)}, (error, data) => {
+            if (error) res.send(error)
+
+            // checking if there is not user
+
+            // rendering
+            res.render('edit', {
+                user: data 
+            })
+
+        })
     })
+
 }
 
 const editRoutePost = (req, res, err) => {
 
     // getting the data 
     const userData = req.body
-    const id = req.params.id
+    const userId = req.params.id
 
-    fileHandler.editUserByAccountNum(fileName, id, userData)
+    // find and update in the db
+    conn((err, db) => {
+        if (err) res.send(err)
+
+        db.collection('User').findOneAndUpdate({_id: new ObjectId(userId)}, {$set: {
+            name: userData.name,
+            balance: userData.balance
+        }}) 
+
+    })
     // saving 
     // redirecting
     res.redirect('/show-all')
@@ -115,29 +165,28 @@ const searchRoutePost = (req, res, err) => {
     //res.redirect('/show-all')
 
 }
-
-// showall route
-const showAllRouteGet = (req, res, err) => {
-
-    // gettingg all the users from the json file
-    const customers = fileHandler.getData(fileName)
-
-    res.render('showAll', {
-        customers: customers
-    })
-}
-
 // showSingle route
 const showSingleRouteGet = (req, res, err) => {
 
     const userId = req.params.id
 
-    // searching for a user
-    const user = fileHandler.getUserById(fileName, userId, "account_num")
+    // searching for a user in the db
+    conn((err, db) => {
+        if (err) res.send(err)
 
-    res.render('showSingle', {
-        customer: user
+        db.collection('User').findOne({_id: new ObjectId(userId)}, (error, data) => {
+            if (error) res.send(error)
+
+            // checking if there is not user
+
+            // rendering
+            console.log(data)
+            res.render('showSingle', {
+                customer: data 
+            })
+        })
     })
+
 }
 
 // withdraw route

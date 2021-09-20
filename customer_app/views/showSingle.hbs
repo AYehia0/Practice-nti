@@ -8,14 +8,14 @@
 
 {{customer.name}}
 <br>
-{{customer.account_num}}
+{{customer._id}}
 <br>
 
 {{#unless customer.status }}
     <form action="/activate" method="POST" >
-        <input type="hidden" name="account_num" value="{{customer.account_num}}">
+        <input type="hidden" name="account_num" value="{{customer._id}}">
 
-        <input type="submit" value="status">
+        <input type="submit" value="Activate">
     </form>
 {{/unless}}
 
@@ -26,7 +26,7 @@
 <h2>Add Money</h2>
 
 <form action="/modify-balance" method="POST" >
-    <input type="hidden" name="account_num" value="{{customer.account_num}}">
+    <input type="hidden" name="account_num" value="{{customer._id}}">
     <input type="number" name="money" placeholder="">
 
     <input type="submit">
@@ -37,7 +37,7 @@
 <h2>Withdraw Money</h2>
 
 <form action="/withdraw" method="POST" >
-    <input type="hidden" name="account_num" value="{{customer.account_num}}">
+    <input type="hidden" name="account_num" value="{{customer._id}}">
     <input type="hidden" name="balance" value="{{customer.balance}}">
     <input type="number" name="money" placeholder="Current balance: {{customer.balance}}">
 
@@ -48,9 +48,11 @@
 
 <h2>Modifiy user</h2>
 
-<a href="/edit/{{customer.account_num}}">Edit User</a>
+<a href="/edit/{{customer._id}}">Edit User</a>
 
 <br>
+
+
 {{> footer }}
 
 

@@ -14,12 +14,12 @@ router.get('/show-single/:id', userController.showSingleRouteGet)
 router.get('/edit/:id', userController.editRouteGet)
 
 // post 
-router.post('/search', userController.searchRoutePost)
-router.post('/activate', userController.activateRoutePost)
 router.post('/add', userController.addRoutePost)
-router.post('/modify-balance', userController.balanceAddRoutePost)
-router.post('/withdraw', userController.withdrawRoutePost)
 router.post('/edit/:id', userController.editRoutePost)
+//router.post('/search', userController.searchRoutePost)
+//router.post('/activate', userController.activateRoutePost)
+//router.post('/modify-balance', userController.balanceAddRoutePost)
+//router.post('/withdraw', userController.withdrawRoutePost)
 
 module.exports = router
 

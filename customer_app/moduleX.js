@@ -1,8 +1,7 @@
 const fs = require('fs')
 
 
-// exports to a file using the fs module
-
+// exports to a file using the fs module 
 // note: this overwrites the file each time.
 function exportToFile(fileName, data) {
 
