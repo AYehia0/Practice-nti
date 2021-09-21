@@ -111,6 +111,9 @@ const logoutAll = async (req, res) => {
     }
 }
 
+const uploadFile = (req, res) => {
+    res.status(200).send({data: "File uploaded"})
+}
 
 
 // - logout
@@ -126,5 +129,6 @@ module.exports = {
     registerUser,
     addAddress,
     loginUser,
-    userProfile
+    userProfile,
+    uploadFile
 }
