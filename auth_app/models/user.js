@@ -95,7 +95,7 @@ const userSchema = new Schema({
 // timestamps: logging the time the object created at, updated at
 {
     timestamps:true, 
-    toJSON:{
+    tojson:{
         transform(doc, ret) {
             delete ret.password
             delete ret.__v
