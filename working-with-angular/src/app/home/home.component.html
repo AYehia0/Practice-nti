@@ -1,0 +1,18 @@
+<p>home works!</p>
+
+<div class="container">
+    <h1>{{showWelcomeMessage()}}</h1>
+    <h2>{{angVersion}}</h2>
+
+    <!-- <input type="text" (input)="handleInput($event)"> -->
+    <!-- <input type="text" [(ngModel)]="twoWayBindingData">
+    <h3>{{twoWayBindingData}}</h3> -->
+</div>
+
+<input type="text" placeholder="search"  [(ngModel)]="twoWayBindingData" (keyup.enter)="getImgsFromApi(); filterTitles()">
+
+<div class="container" *ngFor="let img of searchResult; let ind=index; let odd=odd; let even=even">
+    <h1 [class]="{'red':odd, 'green':even}">{{img.title}} {{ind+1}} </h1>
+
+    <img [src]="img.thumbnailUrl">
+</div>
