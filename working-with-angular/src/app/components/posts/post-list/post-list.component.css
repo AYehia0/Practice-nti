@@ -1,0 +1,10 @@
+/* targets the host element which is the post-list-component */
+:host {
+    display: block;
+    margin-top: 1.5rem;
+}
+
+.no-posts-text  {
+    text-align: center;
+}
+
