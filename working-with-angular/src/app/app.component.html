@@ -1,2 +1,11 @@
-<router-outlet></router-outlet>
 <app-header></app-header>
+
+<!-- the add post thing goes here -->
+<!-- after adding emmiter we can get it here -->
+
+<main>
+    <app-posts (postEmitter)="onPostAdded($event)" (orderEmitter)="onOrderAdded($event)"></app-posts>
+    <app-post-post-list [posts]="storedPosts" [order]="storedOrder"></app-post-post-list>
+</main>
+
+<router-outlet></router-outlet>
